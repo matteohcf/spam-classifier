@@ -3,11 +3,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 from dataclasses import dataclass, field
+from config import SPAM_HAM_DATASET_PATH
+
 
 
 @dataclass
 class Dataset:
-    csv_path: str
+    csv_path: str = SPAM_HAM_DATASET_PATH
     label_column: str = 'label'
     validation_size: float = 0.2
     random_state: int = 11

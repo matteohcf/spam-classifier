@@ -1,5 +1,9 @@
+import asyncio
 from fastapi import APIRouter, HTTPException, Depends
 from api.classifications.model import Classification
+from service.classifier.utils.classifier import train_classifier, classify_italian_text
+from service.classifier.utils.classifier_instance import get_classification
+from service.classifier.utils.const import Dataset
 
 router = APIRouter()
 
@@ -18,7 +22,19 @@ async def read_user(classification_id: str):
 
 @router.post("/", response_model=Classification)
 async def create_classification(classification: Classification):
-    print('here')
-    await classification.create()
+    predicted_type = await get_classification(classification.text)
+
+    classification.type = predicted_type
+
+    # Salva il risultato della classificazione
+    print(classification)
+    classification = {
+        "text": classification.text,
+        "type": classification.type
+    }
+
+    # Salva nel database
+    #await classification.cre#ate()
     return classification
+
 

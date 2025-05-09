@@ -11,8 +11,6 @@ class Classification(Document):
     type: Optional[ClassificationType] = Field(default=ClassificationType.NOT_SPAM)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
-    def get_classification(self, plain_password):
-        return 'd'
 
     #@before_event(Insert)
     #def before_insert(self):
