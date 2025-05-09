@@ -16,8 +16,9 @@ async def read_user(classification_id: str):
     return classification
 
 
-@router.post("/")
+@router.post("/", response_model=Classification)
 async def create_classification(classification: Classification):
+    print('here')
     await classification.create()
     return classification
 

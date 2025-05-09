@@ -4,8 +4,9 @@ from fastapi import FastAPI
 from api.index import router
 from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
-from api.users.model import User
 from utils.env_loader import load_env
+from api.users.model import User
+from api.classifications.model import Classification
 
 load_env() # Auto load .env file
 
@@ -17,7 +18,7 @@ async def init_db():
         await client.server_info()
 
         # Initialize beanie
-        await init_beanie(database=client.SPAM_CLASSIFIER, document_models=[User])
+        await init_beanie(database=client.SPAM_CLASSIFIER, document_models=[User, Classification])
 
         print("Successfully connected to the database on port")
 
