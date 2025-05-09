@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, Depends
-
 from api.classifications.model import Classification
 
 router = APIRouter()

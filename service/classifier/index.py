@@ -9,7 +9,7 @@ model = train_classifier(email_dataset)
 spam_text_example = "Attenzione: il tuo account bancario è stato temporaneamente sospeso. Clicca qui per verificare i tuoi dati e riattivarlo immediatamente."
 not_spam_text_example = "Ciao, come stai? Volevo sapere se hai ricevuto la mia email precedente."
 
-text_to_classify = spam_text_example
+text_to_classify = not_spam_text_example
 prediction, probability = classify_italian_text(text_to_classify, model, email_dataset)
 
 label = "spam" if prediction == 1 else "non-spam"

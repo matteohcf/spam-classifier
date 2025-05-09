@@ -1,19 +1,23 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from api.index import router
 from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
 from api.users.model import User
+from utils.env_loader import load_env
 
+load_env() # Auto load .env file
 
 async def init_db():
     try:
-        client = AsyncIOMotorClient("mongodb+srv://matteocarrarateo:uDTaDOFCiDnDPK2F@cluster-jac.8slg1.mongodb.net/?tlsAllowInvalidCertificates=true")
+
+        client = AsyncIOMotorClient(os.getenv("MONGODB_URI"))
         # Ping the server to confirm connection
         await client.server_info()
 
         # Initialize beanie
-        await init_beanie(database=client.ATM, document_models=[User])
+        await init_beanie(database=client.SPAM_CLASSIFIER, document_models=[User])
 
         print("Successfully connected to the database on port")
 

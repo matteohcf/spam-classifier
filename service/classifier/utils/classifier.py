@@ -13,10 +13,8 @@ def train_classifier(dataset):
     Returns:
         Il modello addestrato
     """
-    # Ottieni i dati di training
     X_train, y_train = dataset.get_training_data()
 
-    # Crea e addestra il modello
     model = SVC(kernel='linear', probability=True)
     model.fit(X_train, y_train)
 
