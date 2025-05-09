@@ -10,8 +10,3 @@ class Classification(Document):
     disabled: bool = False
     type: Optional[ClassificationType] = Field(default=ClassificationType.NOT_SPAM)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
-
-
-    #@before_event(Insert)
-    #def before_insert(self):
-    #   self.password = self.get_password_hash()

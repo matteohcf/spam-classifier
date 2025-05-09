@@ -1,5 +1,6 @@
 from sklearn.svm import SVC
 from googletrans import Translator
+from deep_translator import GoogleTranslator
 import asyncio
 
 def train_classifier(dataset):
@@ -17,25 +18,16 @@ def classify_text(text, model, dataset):
     return prediction, probability
 
 
-async def translate_text(text):
-    translator = Translator()
+async def translate_text(text, input_lang = 'it', output_lang = 'en'):
+    loop = asyncio.get_event_loop()
 
-    # Definisci una funzione che gestisce l'attesa in modo sincrono
     def sync_translate():
-        # Usa asyncio.run solo all'interno di questa funzione sincrona
-        # che verrà eseguita in un thread separato
-        loop = asyncio.new_event_loop()
-        result = loop.run_until_complete(translator.translate(text, src='it', dest='en'))
-        return result.text
+        return GoogleTranslator(source=input_lang, target=output_lang).translate(text)
 
-    # Esegui la funzione sincrona in un thread separato
-    current_loop = asyncio.get_event_loop()
-    translated = await current_loop.run_in_executor(None, sync_translate)
+    translated = await loop.run_in_executor(None, sync_translate)
     return translated
 
 async def classify_italian_text(text, model, dataset):
-    # Traduzione asincrona
     translated_text = await translate_text(text)
-    # Classificazione sincrona
     result = classify_text(translated_text, model, dataset)
-    return result[0]  # Restituisci solo la previsione (0 o 1)
+    return result[0]  # return (0 o 1)

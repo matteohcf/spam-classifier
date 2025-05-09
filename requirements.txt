@@ -11,3 +11,5 @@ seaborn~=0.13.2
 matplotlib~=3.10.3
 scikit-learn~=1.6.1
 googletrans~=4.0.2
+pymongo~=4.9.1
+deep-translator~=1.11.4
