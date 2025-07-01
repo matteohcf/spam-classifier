@@ -9,9 +9,12 @@ Questo progetto espone un'API con FastAPI che permette di classificare un testo 
 
 **🚀 Istruzioni per l'avvio**
 
-- pip install -r requirements.txt
-- Configurare il file .env
-- Avviare il progetto con uvicorn main:app --reload
+- `python -m venv venv`
+- `source venv/bin/activate`   # su Linux/macOS
+- `venv\Scripts\activate.bat`  # su Windows
+- `pip install -r requirements.txt`
+- Configurare il file `.env`
+- Avviare il progetto con `uvicorn main:app --reload`
 - Utilizza la [Collection Postman](./Spam-Classifier.postman_collection.json) per testare l'api 
 
 
@@ -41,3 +44,20 @@ L'algoritmo SVC (Support Vector Classifier) è un modello di apprendimento super
 **📦 Dataset**
 
 Il dataset utilizzato è un classico dataset di email etichettate come spam e non spam, in lingua inglese. È stato preprocessato e vettorizzato per l’addestramento del modello SVC.
+
+**🔧 Librerie principali utilizzate**
+
+- fastapi # Per esporre le API
+- beanie # Per la gestione di MongoDB
+- passlib # Per la gestione delle password
+- pydantic # Per la validazione dei dati
+- dotenv # Per la gestione delle variabili d'ambiente
+- python-dotenv # Per caricare le variabili d'ambiente da un file .env
+- motor # Per l'interazione asincrona con MongoDB
+- python-jose # Per la gestione dei token JWT
+- pandas # Per la manipolazione dei dati (spesso utilizzato nel machine learning)
+- seaborn # Per la visualizzazione dei dati (spesso utilizzato nel machine learning)
+- matplotlib # Per la visualizzazione dei dati (spesso utilizzato nel machine learning)
+- scikit-learn # Per gli algoritmi di machine learning
+- pymongo # Per l'interazione con MongoDB
+- deep-translator # Per la traduzione automatica del testo
